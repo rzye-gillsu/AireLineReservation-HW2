@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Flight {
     private String flightID;
@@ -9,6 +9,7 @@ public class Flight {
     private String time;
     private int price;
     private int seat;
+    private ArrayList<String> IDs;
 
     public void setFlightID(String flightID) {
         this.flightID = flightID;
@@ -66,17 +67,17 @@ public class Flight {
         this.seat = seat;
     }
 
-    public HashMap<String, Flight> setPrimaryFlights(Flight[] flights) {
-        ArrayList<String> IDs = new ArrayList<>();
-        setIDsArraylist(IDs);
+    public TreeMap<String, Flight> setPrimaryFlights(Flight[] flights) {
+        IDs = new ArrayList<>();
+        setIDsArraylist();
 
-        HashMap<String, Flight> flightHashMap = new HashMap<>();
-        setFlights(flights, flightHashMap, IDs);
+        TreeMap<String, Flight> flightTreeMap = new TreeMap<>();
+        setFlights(flights, flightTreeMap);
 
-        return flightHashMap;
+        return flightTreeMap;
     }
 
-    private void setIDsArraylist(ArrayList<String> IDs) {
+    private void setIDsArraylist() {
         IDs.add("HW2--0");
         IDs.add("HW2--1");
         IDs.add("HW2--2");
@@ -89,7 +90,7 @@ public class Flight {
         IDs.add("HW2--9");
     }
 
-    private void setFlights(Flight[] flights, HashMap<String, Flight> flightHashMap, ArrayList<String> IDs) {
+    private void setFlights(Flight[] flights, TreeMap<String, Flight> flightTreeMap) {
 
         String[] cities = new String[]{"Yazd", "Tehran", "Esfahan", "Mashhad", "Tabriz",
                 "Yasooj", "Shiraz", "Kerman", "Ilam", "Mazandaran"};
@@ -98,34 +99,34 @@ public class Flight {
         int increment = 0, decrement = 9;
 
         primaryFeatures(flights[increment], cities[increment], cities[decrement--], 3, 30, 8, 0, prices[increment]);
-        flightHashMap.put(IDs.get(increment), flights[increment++]);
+        flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
         primaryFeatures(flights[increment], cities[increment], cities[decrement--], 3, 30, 8, 10, prices[increment]);
-        flightHashMap.put(IDs.get(increment), flights[increment++]);
+        flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
         primaryFeatures(flights[increment], cities[increment], cities[decrement--], 3, 30, 8, 20, prices[increment]);
-        flightHashMap.put(IDs.get(increment), flights[increment++]);
+        flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
         primaryFeatures(flights[increment], cities[increment], cities[decrement--], 3, 30, 8, 30, prices[increment]);
-        flightHashMap.put(IDs.get(increment), flights[increment++]);
+        flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
         primaryFeatures(flights[increment], cities[increment], cities[decrement--], 3, 30, 8, 40, prices[increment]);
-        flightHashMap.put(IDs.get(increment), flights[increment++]);
+        flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
         primaryFeatures(flights[increment], cities[increment], cities[decrement--], 3, 30, 8, 50, prices[increment]);
-        flightHashMap.put(IDs.get(increment), flights[increment++]);
+        flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
         primaryFeatures(flights[increment], cities[increment], cities[decrement--], 4, 1, 10, 10, prices[increment]);
-        flightHashMap.put(IDs.get(increment), flights[increment++]);
+        flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
         primaryFeatures(flights[increment], cities[increment], cities[decrement--], 4, 1, 10, 20, prices[increment]);
-        flightHashMap.put(IDs.get(increment), flights[increment++]);
+        flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
         primaryFeatures(flights[increment], cities[increment], cities[decrement--], 4, 1, 10, 30, prices[increment]);
-        flightHashMap.put(IDs.get(increment), flights[increment++]);
+        flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
         primaryFeatures(flights[increment], cities[increment], cities[decrement], 4, 1, 10, 40, prices[increment]);
-        flightHashMap.put(IDs.get(increment), flights[increment]);
+        flightTreeMap.put(IDs.get(increment), flights[increment]);
 
     }
 
