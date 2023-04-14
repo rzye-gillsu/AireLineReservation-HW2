@@ -20,8 +20,6 @@ public class AdminControl {
     }
 
     public void printFlightsChart(TreeMap<String, Flight> flightTreeMap) {
-        System.out.println(flightTreeMap);
-
         // DON'T FORGET beatifulizing the appearance of them. 08, 1,000,000, ...
         System.out.printf("|%-7s\t|%-10s\t|%-12s\t|%-9s\t|%-6s\t|%-8s\t|%-4s\n",
                 "FlightID", "Origin", "Destination", "Date", "Time", "Price", "Seats");

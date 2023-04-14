@@ -67,6 +67,7 @@ public class Flight {
         this.seat = seat;
     }
 
+    // if (flightTreeMap.isEmpty)
     public TreeMap<String, Flight> setPrimaryFlights(Flight[] flights) {
         IDs = new ArrayList<>();
         setIDsArraylist();
