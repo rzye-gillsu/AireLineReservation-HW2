@@ -25,10 +25,22 @@ public class Admin {
             option = input.nextInt();
             option = getOption(option);
             switch (option) {
-                case 1 -> add();
-                case 2 -> update();
-                case 3 -> remove();
-                case 4 -> flightSchedule();
+                case 1 -> {
+                    add();
+                    break;
+                }
+                case 2 -> {
+                    update();
+                    break;
+                }
+                case 3 -> {
+                    remove();
+                    break;
+                }
+                case 4 -> {
+                    flightSchedule();
+                    break;
+                }
             }
         }
     }

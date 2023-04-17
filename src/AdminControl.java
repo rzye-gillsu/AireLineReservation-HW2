@@ -20,16 +20,21 @@ public class AdminControl {
     }
 
     public void printFlightsChart(TreeMap<String, Flight> flightTreeMap) {
-        // DON'T FORGET beatifulizing the appearance of them. 08, 1,000,000, ...
+
         System.out.printf("|%-7s\t|%-10s\t|%-12s\t|%-9s\t|%-6s\t|%-8s\t|%-4s\n",
                 "FlightID", "Origin", "Destination", "Date", "Time", "Price", "Seats");
+
         for (String key : flightTreeMap.keySet()) {
             System.out.printf("|%-7s\t|%-10s\t|%-12s\t|%-9s\t|%-6s\t|%-8s\t|%-4s\n",
                     key, flightTreeMap.get(key).getOrigin(),
                     flightTreeMap.get(key).getDestination(), flightTreeMap.get(key).getDate(),
                     flightTreeMap.get(key).getTime(), flightTreeMap.get(key).getPrice(), flightTreeMap.get(key).getSeat());
         }
+
+        
+
     }
+
 
     public void binding(String flightID, Flight flight) {
         flightTreeMap.put(flightID, flight);

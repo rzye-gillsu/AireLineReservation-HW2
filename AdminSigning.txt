@@ -1,8 +1,11 @@
-public class AdminSigning implements Signing {
+import java.util.ArrayList;
+
+public class UsersSigning implements Signing {
     private String username;
     private String password;
+    private ArrayList<String> users = new ArrayList<>();
 
-    public AdminSigning() {
+    public UsersSigning() {
         menu();
     }
 
@@ -34,29 +37,43 @@ public class AdminSigning implements Signing {
 
     @Override
     public void checkSignUp() {
-        if (username == "Admin" && password == "Admin") {
-            System.out.println("You are predefined. Sign in to continue...");
-            menu();
-        }
-        else {
+        String concat = username + " " + password;
+        System.out.println("Your username and password are successfully submitted.");
+        if ((!username.equals("Admin") && !password.equals("Admin")) || search(concat)) {
+            System.out.println("Either Username or password has already taken.");
+            while (search(concat)) {
+                System.out.print("Try another username: ");
+                username = input.next();
+                System.out.print("And another password: ");
+                password = input.next();
+                concat = username + " " + password;
+            }
+
+        } else {
             System.out.println("Your username and password are successfully submitted.");
+            users.add(concat);
             menu();
-            // is a new user.
         }
+    }
+
+    private boolean search(String concat) {
+        for (Object c : users) {
+            if (concat == c)
+                return true;
+        }
+        return false;
     }
 
     @Override
     public void checkSignIn() {
-        if (username == "Admin" && password == "Admin") {
+        if (username.equals("Admin") && password.equals("Admin")) {
             Admin admin = new Admin();
             System.out.println("Welcome Back Admin!");
             admin.adminMenu();
-        }
-        else {
+        } else {
             // search the users data
             System.out.println("");
             // is a new user.
         }
     }
-
 }
