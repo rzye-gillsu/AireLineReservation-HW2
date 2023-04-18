@@ -35,8 +35,8 @@ public class Passengers {
 
     public void printPassengers() {
         System.out.println(passengers);
-        for (int i = 0; i < passengers.size(); i++) {
-            System.out.println(passengers.get(i).getUsername() + " " + passengers.get(i).getPassword());
+        for (var p : passengers) {
+            System.out.println(p.getUsername() + " " + p.getPassword());
         }
     }
 
@@ -94,6 +94,13 @@ public class Passengers {
     }
 
     private void addCharge() {
+        System.out.print("how much you will charge your account?\n--> : ");
+        int charge = input.nextInt();
+        System.out.printf("Are you sure you want to add %d$ to your account?(y/Y for yes-n/N for no:)\n", charge);
+        String answer = input.next();
+        if (answer.equals("y") || answer.equals("Y")) {
+            passenger.setCharge(charge);
+        }
     }
 
     private void searchTickets() {

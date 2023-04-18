@@ -1,11 +1,15 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.TreeMap;
-
 public class Passenger {
     private String username;
     private String password;
-    private String charge;
+    private int charge;
+
+    public int getCharge() {
+        return charge;
+    }
+
+    public void setCharge(int charge) {
+        this.charge = charge;
+    }
 
     public String getUsername() {
         return username;

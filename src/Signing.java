@@ -5,7 +5,6 @@ public class Signing {
     private String username;
     private String password;
     private Passengers p = new Passengers();
-
     private Scanner input = new Scanner(System.in);
 
     public void signingMenu() {
@@ -16,17 +15,14 @@ public class Signing {
                 ..........................MENU OPTIONS........................
 
                     <1> Sign in
-                    <2> Sign up""");
+                    <2> Sign up
+                    <3> Exit""");
         int option = input.nextInt();
         switch (option) {
-            case 1 -> {
-                signIN();
-                break;
-            }
+            case 1 -> signIN();
             case 2 -> {
                 signUP();
                 signingMenu();
-                break;
             }
         }
 
@@ -44,9 +40,18 @@ public class Signing {
             admin.adminMenu();
         } else {
             ArrayList<Passenger> passengers = p.getPassengers();
-//            if (passengers.get())
-            p.userMenu();
+
+            for (var p1 : passengers) {
+                if (userFound(p1)) {
+                    (new Passengers()).setPassenger(p1);
+                    System.out.printf("\n\nWelcome dear %s!\n\n", username);
+                    p.userMenu();
+                    return;
+                }
+            }
         }
+        System.out.println("\n!!!User with submitted username and password is not found.");
+        signingMenu();
     }
 
     private void signUP() {
@@ -55,8 +60,6 @@ public class Signing {
     }
 
     private void checkSignUP() {
-        // saves 2 same user after password-2
-        // stuck in the loop after username-2
         ArrayList<Passenger> passengers = p.getPassengers();
 
         if (userIsValid(passengers)) {
@@ -68,16 +71,17 @@ public class Signing {
         if (isAdmin()) {
             System.out.println("You are predefined. Sign in to continue...");
         } else {
-            for (int i = 0; i < passengers.size(); i++) {
-                if (passengers.get(i).getUsername().equals(username)) {
+            for (var p1 : passengers) {
+                if (p1.getUsername().equals(username)) {
                     System.out.println("\n!!!This username is already taken. Try it again: ");
                     signUP();
-                    break;
+                    return false;
                 }
             }
             if (password.length() < 4) {
                 System.out.println("\n!!!Password must contain at least 4 characters. Try it again: ");
                 signUP();
+                return false;
             }
         }
         return true;
@@ -104,5 +108,9 @@ public class Signing {
 
     private boolean isAdmin() {
         return username.equals("Admin") && password.equals("Admin");
+    }
+
+    private boolean userFound(Passenger p1) {
+        return p1.getUsername().equals(username) && p1.getPassword().equals(password);
     }
 }
