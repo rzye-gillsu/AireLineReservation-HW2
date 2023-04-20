@@ -8,7 +8,7 @@ public class Signing {
     private Scanner input = new Scanner(System.in);
 
     public void signingMenu() {
-        System.out.println("""
+        System.out.print("""
                 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
                            WELCOME TO AIRLINE RESERVATION SYSTEM
                 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -16,8 +16,13 @@ public class Signing {
 
                     <1> Sign in
                     <2> Sign up
-                    <3> Exit""");
+                    <3> Exit
+                 Your option:\040""");
         int option = input.nextInt();
+        if (option == 3) {
+            System.out.println("\nSee you soon!");
+            System.exit(0);
+        }
         switch (option) {
             case 1 -> signIN();
             case 2 -> signUP();
@@ -31,24 +36,31 @@ public class Signing {
     }
 
     private void checkSignIn() {
+        int check = 0;
         if (isAdmin()) {
             System.out.println("\n\nWelcome back Admin!\n\n");
             Admin admin = new Admin();
             admin.adminMenu();
+            return;
         } else {
             ArrayList<Passenger> passengers = p.getPassengers();
 
             for (var p1 : passengers) {
                 if (userFound(p1)) {
-                    (new Passengers()).setPassenger(p1);
+                    p.setPassenger(p1);
                     System.out.printf("\n\nWelcome dear %s!\n\n", username);
                     p.userMenu();
-                    return;
+                    check = 1;
                 }
             }
         }
-        System.out.println("\n!!!User with given username and password is not found.");
+        if (check == 0)
+            System.out.println("\n!!!User with given username and password is not found.");
         signingMenu();
+    }
+
+    private boolean userFound(Passenger p1) {
+        return p1.getUsername().equals(username) && p1.getPassword().equals(password);
     }
 
     private void signUP() {
@@ -107,7 +119,4 @@ public class Signing {
         return username.equals("Admin") && password.equals("Admin");
     }
 
-    private boolean userFound(Passenger p1) {
-        return p1.getUsername().equals(username) && p1.getPassword().equals(password);
-    }
 }

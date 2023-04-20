@@ -7,10 +7,6 @@ public class Passengers {
     private Scanner input = new Scanner(System.in);
     private Passenger passenger;
 
-    public Passenger getPassenger() {
-        return passenger;
-    }
-
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
     }
@@ -48,7 +44,6 @@ public class Passengers {
                 """);
         int option = input.nextInt();
         if (option == 0) {
-            (new Signing()).signingMenu();
             return; // is it needed?
         } else {
             switch (option) {

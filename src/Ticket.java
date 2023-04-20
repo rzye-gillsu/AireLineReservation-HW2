@@ -35,5 +35,3 @@ public class Ticket {
         flightTreeMap = adminControl.getFlightTreeMap();
     }
 }
-
-// SELECT * FROM city JOIN address a ON ... what is it? a query?
