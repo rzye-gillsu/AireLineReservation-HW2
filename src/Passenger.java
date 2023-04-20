@@ -8,7 +8,7 @@ public class Passenger {
     }
 
     public void setCharge(int charge) {
-        this.charge = charge;
+        this.charge += charge;
     }
 
     public String getUsername() {

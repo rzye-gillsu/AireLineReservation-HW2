@@ -20,12 +20,9 @@ public class Signing {
         int option = input.nextInt();
         switch (option) {
             case 1 -> signIN();
-            case 2 -> {
-                signUP();
-                signingMenu();
-            }
+            case 2 -> signUP();
         }
-
+        signingMenu();
     }
 
     private void signIN() {
@@ -50,7 +47,7 @@ public class Signing {
                 }
             }
         }
-        System.out.println("\n!!!User with submitted username and password is not found.");
+        System.out.println("\n!!!User with given username and password is not found.");
         signingMenu();
     }
 

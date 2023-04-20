@@ -1,31 +1,39 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Ticket {
     private Passenger passenger;
-    private String ticketID;
-    private ArrayList<Flight> flights;
+    private String flightID;
+    private TreeMap<String, Flight> flightTreeMap;
+    private HashMap<Passenger, ArrayList<Flight>> ticketHashMap = new HashMap<>();
+    private ArrayList<Flight> flights = new ArrayList<>();
 
-    public Passenger getPassenger() {
-        return passenger;
-    }
-
-    public void setPassenger(Passenger passenger) {
+    public void setTicketIDs(Passenger passenger, String flightID) {
         this.passenger = passenger;
+        this.flightID = flightID;
+        setFlights();
+        setTicketTreeMap();
     }
 
-    public String getTicketID() {
-        return ticketID;
+    private void setFlights() {
+        setFlightTreeMap();
+        flights.add(flightTreeMap.get(flightID));
     }
 
-    public void setTicketID(String ticketID) {
-        this.ticketID = ticketID;
+    private void setTicketTreeMap() {
+        ticketHashMap.put(passenger, flights);
+
+        for (var key : ticketHashMap.keySet()) {
+            System.out.println(key + " " + flights);
+        }
     }
 
-    public ArrayList<Flight> getFlights() {
-        return flights;
-    }
-
-    public void setFlights(ArrayList<Flight> flights) {
-        this.flights = flights;
+    private void setFlightTreeMap() {
+//        AdminControl adminControl = new AdminControl();
+        AdminControl adminControl = new AdminControl();
+        flightTreeMap = adminControl.getFlightTreeMap();
     }
 }
+
+// SELECT * FROM city JOIN address a ON ... what is it? a query?

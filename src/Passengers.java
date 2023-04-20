@@ -5,15 +5,7 @@ import java.util.TreeMap;
 
 public class Passengers {
     private Scanner input = new Scanner(System.in);
-    private TreeMap<String, Flight> flightTreeMap;
-
-    private void setFlightTreeMap() {
-//        AdminControl adminControl = new AdminControl();
-        this.flightTreeMap = (new AdminControl()).getFlightTreeMap();
-    }
-
-    private HashMap<Ticket, Passenger> reserved = new HashMap<>();
-    private Passenger passenger = new Passenger();
+    private Passenger passenger;
 
     public Passenger getPassenger() {
         return passenger;
@@ -55,36 +47,31 @@ public class Passengers {
                     <0> Sign out
                 """);
         int option = input.nextInt();
-        switch (option) {
-            case 1 -> {
-                changePassword();
-                break;
-            }
-            case 2 -> {
-                searchTickets();
-                break;
-            }
-            case 3 -> {
-                bookingTickets();
-                break;
-            }
-            case 4 -> {
-                cancelingTicket();
-                break;
-            }
-            case 5 -> {
-                showBookedTickets();
-                break;
-            }
-            case 6 -> {
-                addCharge();
-                break;
+        if (option == 0) {
+            (new Signing()).signingMenu();
+            return; // is it needed?
+        } else {
+            switch (option) {
+                case 1 -> changePassword();
+                case 2 -> searchTickets();
+                case 3 -> bookingTickets();
+                case 4 -> cancelingTicket();
+                case 5 -> showBookedTickets();
+                case 6 -> addCharge();
+
             }
         }
+        userMenu();
 
     }
 
     private void bookingTickets() {
+        System.out.print("Your chosen flight's flightID: ");
+        String flightID = input.next();
+
+        Ticket ticket = new Ticket();
+        ticket.setTicketIDs(passenger, flightID);
+
     }
 
     private void cancelingTicket() {
@@ -95,22 +82,71 @@ public class Passengers {
 
     private void addCharge() {
         System.out.print("how much you will charge your account?\n--> : ");
-        int charge = input.nextInt();
-        System.out.printf("Are you sure you want to add %d$ to your account?(y/Y for yes-n/N for no:)\n", charge);
-        String answer = input.next();
-        if (answer.equals("y") || answer.equals("Y")) {
-            passenger.setCharge(charge);
-        }
+        passenger.setCharge(input.nextInt());
+        System.out.printf("Your account is successfully charged.\nYour total charge is %d$\n", passenger.getCharge());
     }
 
     private void searchTickets() {
-        System.out.println("Search based on filters below: (Can choose one or some of them)");
-        System.out.println("<1> FlightID\n<2> Origin\n<3> Destination\n<4> Date\n<5> Time\n<6> Price Range");
+        System.out.print("""
+                Search based on filters below:
+                <1> FlightID
+                <2> Origin
+                <3> Destination
+                <4> Date
+                <5> Time
+                <6> Price Range
+                You can choose as many filters as you want. At the end, Submit your filters by pressing s
+                ---> :""");
 
-        ArrayList<Integer> option = new ArrayList<>();
+        ArrayList<Integer> options = gettingInputs();
 
+        filters(options);
+
+    }
+
+    private ArrayList<Integer> gettingInputs() {
+        ArrayList<Integer> options = new ArrayList<>();
+        String option = " ";
+
+        while (!option.equals("s")) {
+            option = input.next();
+
+            if (isInteger(option)) {
+
+                if ((Integer.parseInt(option) > 0) && (Integer.parseInt(option) < 10)) {
+                    System.out.println("\n!!!Choose an Integer between 1 - 9.");
+                } else {
+                    options.add(Integer.parseInt(option));
+                }
+
+            } else /*if (!option.equals("s"))*/ {
+                System.out.println("\n!!!Choose an Integer type.");
+            }
+        }
+        return options;
+    }
+
+    private void filters(ArrayList<Integer> options) {
+        TreeMap<String, Flight> flightTreeMap = (new AdminControl()).getFlightTreeMap();
+        for (var i : options) {
+            for (var key : flightTreeMap.keySet()) {
+                switch (i) {
+
+                }
+            }
+        }
     }
 
     private void changePassword() {
     }
+
+    private boolean isInteger(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
+
