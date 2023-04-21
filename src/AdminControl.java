@@ -3,7 +3,7 @@ import java.util.TreeMap;
 public class AdminControl {
     private TreeMap<String, Flight> flightTreeMap;
 
-    public void sePrimaryData() {
+    public void setPrimaryData() {
         Flight[] flights = new Flight[10];
         for (int i = 0; i < 10; i++) {
             flights[i] = new Flight();

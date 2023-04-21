@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -8,6 +7,7 @@ public class Passengers {
     private Passenger passenger;
     private ArrayList<Passenger> passengers = new ArrayList<>();
     private TicketControl ticketControl = new TicketControl();
+    TreeMap<String, Flight> flightTreeMap;
 
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
@@ -27,8 +27,6 @@ public class Passengers {
             System.out.println(p.getUsername() + " " + p.getPassword());
         }
     }
-
-    TreeMap<String, Flight> flightTreeMap;
 
     public void userMenu(TreeMap<String, Flight> flightTreeMap) {
         this.flightTreeMap = flightTreeMap;
@@ -68,9 +66,13 @@ public class Passengers {
         String flightID = input.next();
 
         if (passenger.getTicket().checkOption(flightID, flightTreeMap)) {
+            passenger.getTicket().checkOption(flightID, flightTreeMap);
             ticketControl.setFlightTreeMap(flightTreeMap);
-            if (ticketControl.manageTicket(passenger, flightID))
+            if (ticketControl.manageTicket(passenger, flightID)) {
                 passenger.getTicket().setTicketIDs(passenger, flightID);
+                System.out.println("Ticket is saved!");
+                ticketControl.availableSeats();
+            }
         } else {
             System.out.println("\n!!!No flight with given flightID were found.");
         }
@@ -78,6 +80,7 @@ public class Passengers {
     }
 
     private void cancelingTicket() {
+        ticketControl.cancelingTicket(passenger, passenger.getTicket().getTicketID());
     }
 
     private void showBookedTickets() {
@@ -141,6 +144,14 @@ public class Passengers {
     }
 
     private void changePassword() {
+        System.out.print("Enter your previous password: ");
+        String password = input.next();
+        if (password.equals(passenger.getPassword())) {
+            System.out.print("Enter your new password: ");
+            passenger.setPassword(input.next());
+        } else {
+            System.out.println("\n!!!It isn't your previous password. Try again later.");
+        }
     }
 
     private boolean isInteger(String str) {

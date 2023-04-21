@@ -2,14 +2,21 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Admin {
+    private static Admin instance = new Admin();
+    public static Admin getInstance() {
+        return instance;
+    }
+    private Admin() {
+        adminControl.setPrimaryData();
+        flightTreeMap = adminControl.getFlightTreeMap();
+    }
     private Scanner input = new Scanner(System.in);
     private AdminControl adminControl = new AdminControl();
+
     private TreeMap<String, Flight> flightTreeMap;
-    {
-        adminControl.sePrimaryData();
-    }
+
+
     Flight flight = new Flight();
-    
 
     public void adminMenu() {
         int option = 1;
@@ -59,7 +66,7 @@ public class Admin {
     private void add() {
         Flight flight = new Flight();
 
-        flightTreeMap = adminControl.getFlightTreeMap();
+//        flightTreeMap = adminControl.getFlightTreeMap();
 
         System.out.print("Flight ID(Enter the code which is a number): ");
         flight.setFlightID(input.next());
@@ -87,7 +94,7 @@ public class Admin {
 
 
     private void update() {
-        flightTreeMap = adminControl.getFlightTreeMap();
+//        flightTreeMap = adminControl.getFlightTreeMap();
 
         System.out.print("The Flight ID you wanna update: ");
         String ID = input.next();
@@ -144,7 +151,7 @@ public class Admin {
     }
 
     private void remove() {
-        flightTreeMap = adminControl.getFlightTreeMap();
+//        flightTreeMap = adminControl.getFlightTreeMap();
 
         System.out.print("The Flight ID(Enter the code which is a number):");
         String ID = input.next();

@@ -4,13 +4,18 @@ import java.util.HashSet;
 import java.util.TreeMap;
 
 public class TicketControl {
-    private Ticket ticket;
+    private TreeMap<String, Flight> userTickets;
+
+    public void setUserTickets() {
+        this.userTickets = passenger.getTicket().getUserTickets(passenger);
+    }
+
     private Passenger passenger;
     private String flightID;
-    private HashMap<Passenger, ArrayList<Flight>> ticketHashMap;
+    private String ticketID;
 
-    public void setTicketHashMap() {
-        this.ticketHashMap = (new Ticket()).getTicketHashMap();
+    public void setTicketID(String ticketID) {
+        this.ticketID = ticketID;
     }
 
     private TreeMap<String, Flight> flightTreeMap;
@@ -30,29 +35,51 @@ public class TicketControl {
     public boolean manageTicket(Passenger passenger, String flightID) {
         setPassenger(passenger);
         setFlightID(flightID);
-        if (manageCharge() && manageSeat())
+        if (takeCharge()) {
+            takeSeat();
             return true;
+        }
         return false;
     }
 
-    private boolean manageCharge() {
+    private boolean takeCharge() {
         if (passenger.getCharge() >= flightTreeMap.get(flightID).getPrice()) {
             passenger.setCharge(passenger.getCharge() - flightTreeMap.get(flightID).getPrice());
         } else {
-            System.out.printf("Your charge is not enough to book this flight.\n" +
-                    "You need at least %d$ more.\n", (flightTreeMap.get(flightID).getPrice()) - passenger.getCharge());
+            System.out.printf("""
+                    Your charge is not enough to book this flight.
+                    You need at least %d$ more.
+                    """, (flightTreeMap.get(flightID).getPrice()) - passenger.getCharge());
             return false;
         }
         return true;
     }
 
-    private boolean manageSeat() {
-        if (flightTreeMap.get(flightID).getSeat() == 0) {
-            System.out.println("This Flight has no seats available.");
-            return false;
-        } else {
-            flightTreeMap.get(flightID).setSeat(flightTreeMap.get(flightID).getSeat() - 1);
-        }
-        return true;
+    private void takeSeat() {
+        flightTreeMap.get(flightID).setSeat(flightTreeMap.get(flightID).getSeat() - 1);
+    }
+
+    public void availableSeats() {
+        if (flightTreeMap.get(flightID).getSeat() == 0)
+            flightTreeMap.remove(flightID);
+    }
+
+    public void cancelingTicket(Passenger passenger, String ticketID) {
+        setPassenger(passenger);
+        setUserTickets();
+        setTicketID(ticketID);
+
+        userTickets.remove(this.ticketID);
+
+        addCharge();
+        addSeat();
+    }
+
+    private void addCharge() {
+        passenger.setCharge(passenger.getCharge() + flightTreeMap.get(flightID).getPrice());
+    }
+
+    private void addSeat() {
+        flightTreeMap.get(flightID).setSeat(flightTreeMap.get(flightID).getSeat() + 1);
     }
 }

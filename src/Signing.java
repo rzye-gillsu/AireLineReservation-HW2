@@ -2,15 +2,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Signing {
+    private Admin admin;
+    public Signing() {
+        admin = Admin.getInstance();
+    }
+
     private String username;
     private String password;
     private Passengers p = new Passengers();
     private Scanner input = new Scanner(System.in);
-    private Admin admin = new Admin();
-
-    public Admin getAdmin() {
-        return admin;
-    }
 
     public void signingMenu() {
         System.out.print("""
