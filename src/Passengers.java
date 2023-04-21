@@ -6,12 +6,12 @@ import java.util.TreeMap;
 public class Passengers {
     private Scanner input = new Scanner(System.in);
     private Passenger passenger;
+    private ArrayList<Passenger> passengers = new ArrayList<>();
+    private TicketControl ticketControl = new TicketControl();
 
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
     }
-
-    private ArrayList<Passenger> passengers = new ArrayList<>();
 
     public ArrayList<Passenger> getPassengers() {
         return passengers;
@@ -28,7 +28,10 @@ public class Passengers {
         }
     }
 
-    public void userMenu() {
+    TreeMap<String, Flight> flightTreeMap;
+
+    public void userMenu(TreeMap<String, Flight> flightTreeMap) {
+        this.flightTreeMap = flightTreeMap;
         System.out.println("""
                 ::::::::::::::::::::::::::::::::::::::::
                          PASSENGER MENU OPTIONS
@@ -56,7 +59,7 @@ public class Passengers {
 
             }
         }
-        userMenu();
+        userMenu(flightTreeMap);
 
     }
 
@@ -64,8 +67,13 @@ public class Passengers {
         System.out.print("Your chosen flight's flightID: ");
         String flightID = input.next();
 
-        Ticket ticket = new Ticket();
-        ticket.setTicketIDs(passenger, flightID);
+        if (passenger.getTicket().checkOption(flightID, flightTreeMap)) {
+            ticketControl.setFlightTreeMap(flightTreeMap);
+            if (ticketControl.manageTicket(passenger, flightID))
+                passenger.getTicket().setTicketIDs(passenger, flightID);
+        } else {
+            System.out.println("\n!!!No flight with given flightID were found.");
+        }
 
     }
 

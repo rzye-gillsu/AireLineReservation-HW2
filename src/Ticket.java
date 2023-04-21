@@ -8,20 +8,38 @@ public class Ticket {
     private TreeMap<String, Flight> flightTreeMap;
     private HashMap<Passenger, ArrayList<Flight>> ticketHashMap = new HashMap<>();
     private ArrayList<Flight> flights = new ArrayList<>();
+    private String ticketID;
+
+    public String getTicketID() {
+        return ticketID;
+    }
+    AdminControl adminControl = new AdminControl();
+    private void setFlightTreeMap(TreeMap<String, Flight> flightTreeMap) {
+//        AdminControl adminControl = new AdminControl();
+        this.flightTreeMap = flightTreeMap;
+    }
+
+    private void setTicketID() {
+        ticketID = passenger.getUsername().concat(flightID);
+    }
+
+    public HashMap<Passenger, ArrayList<Flight>> getTicketHashMap() {
+        return ticketHashMap;
+    }
 
     public void setTicketIDs(Passenger passenger, String flightID) {
         this.passenger = passenger;
         this.flightID = flightID;
         setFlights();
-        setTicketTreeMap();
+        setTicketHashMap();
     }
 
     private void setFlights() {
-        setFlightTreeMap();
+//        ticketHashMap.get(passenger).add(flightTreeMap.get(flightID));
         flights.add(flightTreeMap.get(flightID));
     }
 
-    private void setTicketTreeMap() {
+    private void setTicketHashMap() {
         ticketHashMap.put(passenger, flights);
 
         for (var key : ticketHashMap.keySet()) {
@@ -29,9 +47,14 @@ public class Ticket {
         }
     }
 
-    private void setFlightTreeMap() {
-//        AdminControl adminControl = new AdminControl();
-        AdminControl adminControl = new AdminControl();
-        flightTreeMap = adminControl.getFlightTreeMap();
+    public boolean checkOption(String flightID, TreeMap<String, Flight> flightTreeMap) {
+        setFlightTreeMap(flightTreeMap);
+        int check = 0;
+        for (var key : flightTreeMap.keySet())
+            if (flightID.equals(key))
+                check = 1;
+        if (check == 0)
+            return false;
+        return true;
     }
 }

@@ -5,6 +5,9 @@ public class Admin {
     private Scanner input = new Scanner(System.in);
     private AdminControl adminControl = new AdminControl();
     private TreeMap<String, Flight> flightTreeMap;
+    {
+        adminControl.sePrimaryData();
+    }
     Flight flight = new Flight();
     
 
@@ -151,6 +154,10 @@ public class Admin {
     private void flightSchedule() {
         flightTreeMap = adminControl.getFlightTreeMap();
         adminControl.printFlightsChart(flightTreeMap);
+    }
+
+    public TreeMap<String, Flight> getFlightTreeMap() {
+        return flightTreeMap;
     }
 
 }

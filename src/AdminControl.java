@@ -3,16 +3,12 @@ import java.util.TreeMap;
 public class AdminControl {
     private TreeMap<String, Flight> flightTreeMap;
 
-    public AdminControl() {
+    public void sePrimaryData() {
         Flight[] flights = new Flight[10];
         for (int i = 0; i < 10; i++) {
             flights[i] = new Flight();
         }
         flightTreeMap = flights[0].setPrimaryFlights(flights);
-    }
-
-    public void setFlightTreeMap(TreeMap<String, Flight> flightHashMap) {
-        this.flightTreeMap = flightHashMap;
     }
 
     public TreeMap<String, Flight> getFlightTreeMap() {
@@ -30,9 +26,6 @@ public class AdminControl {
                     flightTreeMap.get(key).getDestination(), flightTreeMap.get(key).getDate(),
                     flightTreeMap.get(key).getTime(), flightTreeMap.get(key).getPrice(), flightTreeMap.get(key).getSeat());
         }
-
-        
-
     }
 
 

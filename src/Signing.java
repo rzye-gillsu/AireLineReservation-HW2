@@ -6,6 +6,11 @@ public class Signing {
     private String password;
     private Passengers p = new Passengers();
     private Scanner input = new Scanner(System.in);
+    private Admin admin = new Admin();
+
+    public Admin getAdmin() {
+        return admin;
+    }
 
     public void signingMenu() {
         System.out.print("""
@@ -39,7 +44,6 @@ public class Signing {
         int check = 0;
         if (isAdmin()) {
             System.out.println("\n\nWelcome back Admin!\n\n");
-            Admin admin = new Admin();
             admin.adminMenu();
             return;
         } else {
@@ -49,7 +53,7 @@ public class Signing {
                 if (userFound(p1)) {
                     p.setPassenger(p1);
                     System.out.printf("\n\nWelcome dear %s!\n\n", username);
-                    p.userMenu();
+                    p.userMenu(admin.getFlightTreeMap());
                     check = 1;
                 }
             }
@@ -101,6 +105,7 @@ public class Signing {
         Passenger passenger = new Passenger();
         passenger.setUsername(username);
         passenger.setPassword(password);
+        passenger.setTicket(new Ticket());
         passengers.add(passenger);
 
         p.setPassengers(passengers);
