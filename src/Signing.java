@@ -109,7 +109,6 @@ public class Signing {
         passengers.add(passenger);
 
         p.setPassengers(passengers);
-        p.printPassengers();
     }
 
 

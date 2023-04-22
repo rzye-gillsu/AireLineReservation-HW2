@@ -1,33 +1,23 @@
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.TreeMap;
 
 public class Ticket {
     private Passenger passenger;
     private String flightID;
     private TreeMap<String, Flight> flightTreeMap;
-    private HashMap<Passenger, TreeMap<String, Flight>> ticketHashMap = new HashMap<>();
     private TreeMap<String, Flight> userTickets = new TreeMap<>();
     private String ticketID;
 
-    public String getTicketID() {
-        return ticketID;
-    }
-
-    public TreeMap<String, Flight> getUserTickets(Passenger passenger) {
-        return ticketHashMap.get(passenger);
+    public TreeMap<String, Flight> getUserTickets() {
+        return userTickets;
     }
 
     private void setFlightTreeMap(TreeMap<String, Flight> flightTreeMap) {
         this.flightTreeMap = flightTreeMap;
     }
 
+    private static int i;
     private void setTicketID() {
-        ticketID = passenger.getUsername().concat(flightID);
-    }
-
-    public HashMap<Passenger, TreeMap<String, Flight>> getTicketHashMap() {
-        return ticketHashMap;
+        ticketID = passenger.getUsername() + i++ + flightID;
     }
 
     public void setTicketIDs(Passenger passenger, String flightID) {
@@ -35,30 +25,20 @@ public class Ticket {
         this.flightID = flightID;
         setTicketID();
         setUserTickets();
-        setTicketHashMap();
-
     }
 
     private void setUserTickets() {
         userTickets.put(ticketID, flightTreeMap.get(flightID));
     }
 
-    private void setTicketHashMap() {
-        ticketHashMap.put(passenger, userTickets);
-
-        for (var key : ticketHashMap.keySet()) {
-            System.out.println(key + " " + userTickets);
-        }
-    }
-
     public boolean checkOption(String flightID, TreeMap<String, Flight> flightTreeMap) {
         setFlightTreeMap(flightTreeMap);
         int check = 0;
-        for (var key : this.flightTreeMap.keySet())
-            if (flightID.equals(key))
+        for (var key : flightTreeMap.keySet())
+            if (flightID.equals(key)) {
                 check = 1;
-        if (check == 0)
-            return false;
-        return true;
+                break;
+            }
+        return check != 0;
     }
 }

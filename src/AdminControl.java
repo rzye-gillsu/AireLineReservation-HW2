@@ -32,4 +32,5 @@ public class AdminControl {
     public void binding(String flightID, Flight flight) {
         flightTreeMap.put(flightID, flight);
     }
+
 }

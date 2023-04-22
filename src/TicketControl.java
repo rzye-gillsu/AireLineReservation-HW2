@@ -1,16 +1,18 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.TreeMap;
 
 public class TicketControl {
     private TreeMap<String, Flight> userTickets;
 
     public void setUserTickets() {
-        this.userTickets = passenger.getTicket().getUserTickets(passenger);
+        this.userTickets = passenger.getTicket().getUserTickets();
+    }
+
+    public TreeMap<String, Flight> getUserTickets() {
+        return userTickets;
     }
 
     private Passenger passenger;
+
     private String flightID;
     private String ticketID;
 
@@ -69,17 +71,18 @@ public class TicketControl {
         setUserTickets();
         setTicketID(ticketID);
 
-        userTickets.remove(this.ticketID);
-
         addCharge();
         addSeat();
+
+        userTickets.remove(this.ticketID);
     }
 
     private void addCharge() {
-        passenger.setCharge(passenger.getCharge() + flightTreeMap.get(flightID).getPrice());
+        System.out.println(userTickets);
+        passenger.setCharge(passenger.getCharge() + userTickets.get(ticketID).getPrice());
     }
 
     private void addSeat() {
-        flightTreeMap.get(flightID).setSeat(flightTreeMap.get(flightID).getSeat() + 1);
+        userTickets.get(ticketID).setSeat(userTickets.get(ticketID).getSeat() + 1);
     }
 }
