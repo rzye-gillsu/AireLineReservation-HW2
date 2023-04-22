@@ -67,7 +67,11 @@ public class Flight {
         this.seat = seat;
     }
 
-    // if (flightTreeMap.isEmpty)
+    /**
+     * It sets the primary data of flight chart.
+     * @param flights It gets newed in the AdminControl Class.
+     * @return It returns chart to the chart to the AdminControl Class.
+     */
     public TreeMap<String, Flight> setPrimaryFlights(Flight[] flights) {
         IDs = new ArrayList<>();
         setIDsArraylist();

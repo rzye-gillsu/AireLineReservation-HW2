@@ -3,14 +3,14 @@ import java.util.Scanner;
 
 public class Signing {
     private Admin admin;
-    public Signing() {
-        admin = Admin.getInstance();
-    }
-
     private String username;
     private String password;
     private Passengers p = new Passengers();
     private Scanner input = new Scanner(System.in);
+
+    public Signing() {
+        admin = Admin.getInstance();
+    }
 
     public void signingMenu() {
         System.out.print("""
@@ -40,6 +40,9 @@ public class Signing {
         checkSignIn();
     }
 
+    /**
+     * Checks whether Admin is signing or not and user with given username and password is available.
+     */
     private void checkSignIn() {
         int check = 0;
         if (isAdmin()) {
@@ -63,6 +66,10 @@ public class Signing {
         signingMenu();
     }
 
+    /**
+     * @param p1 passanger
+     * @return -> returns true if user with given username and password is found.
+     */
     private boolean userFound(Passenger p1) {
         return p1.getUsername().equals(username) && p1.getPassword().equals(password);
     }
@@ -72,6 +79,9 @@ public class Signing {
         checkSignUP();
     }
 
+    /**
+     * Checks if the given username and password can be used or not.
+     */
     private void checkSignUP() {
         ArrayList<Passenger> passengers = p.getPassengers();
 
@@ -80,6 +90,11 @@ public class Signing {
         }
     }
 
+    /**
+     * checks if username has not been used and before and the password is in the correct syntax.
+     * @param passengers
+     * @return -> returns true if the username and password is ready to use by the user.
+     */
     private boolean userIsValid(ArrayList<Passenger> passengers) {
         if (isAdmin()) {
             System.out.println("You are predefined. Sign in to continue...");
@@ -100,6 +115,10 @@ public class Signing {
         return true;
     }
 
+    /**
+     * Sets username and password and generates an instance of Ticket class.";
+     * @param passengers
+     */
     private void addUser(ArrayList<Passenger> passengers) {
 
         Passenger passenger = new Passenger();
@@ -119,6 +138,10 @@ public class Signing {
         password = input.next();
     }
 
+    /**
+     * Checks if admin can login or not.
+     * @return
+     */
     private boolean isAdmin() {
         return username.equals("Admin") && password.equals("Admin");
     }

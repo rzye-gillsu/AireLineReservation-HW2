@@ -2,25 +2,14 @@ import java.util.TreeMap;
 
 public class TicketControl {
     private TreeMap<String, Flight> userTickets;
-
-    public void setUserTickets() {
-        this.userTickets = passenger.getTicket().getUserTickets();
-    }
-
-    public TreeMap<String, Flight> getUserTickets() {
-        return userTickets;
-    }
-
     private Passenger passenger;
-
     private String flightID;
     private String ticketID;
+    private TreeMap<String, Flight> flightTreeMap;
 
     public void setTicketID(String ticketID) {
         this.ticketID = ticketID;
     }
-
-    private TreeMap<String, Flight> flightTreeMap;
 
     public void setFlightTreeMap(TreeMap<String, Flight> flightTreeMap) {
         this.flightTreeMap = flightTreeMap;
@@ -34,6 +23,21 @@ public class TicketControl {
         this.flightID = flightID;
     }
 
+    public void setUserTickets() {
+        this.userTickets = passenger.getTicket().getUserTickets();
+    }
+
+    public TreeMap<String, Flight> getUserTickets() {
+        return userTickets;
+    }
+
+    /**
+     * Manages number of seats and decreasing user's price when reserving a ticket.
+     *
+     * @param passenger
+     * @param flightID
+     * @return -> returns true if user's charge is enough to pay for the ticket.
+     */
     public boolean manageTicket(Passenger passenger, String flightID) {
         setPassenger(passenger);
         setFlightID(flightID);
@@ -66,6 +70,11 @@ public class TicketControl {
             flightTreeMap.remove(flightID);
     }
 
+    /**
+     * Manages number of seats and increasing user's price when canceling a ticket.
+     * @param passenger
+     * @param ticketID
+     */
     public void cancelingTicket(Passenger passenger, String ticketID) {
         setPassenger(passenger);
         setUserTickets();

@@ -2,24 +2,28 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Admin {
-    private static Admin instance = new Admin();
-
+    /**
+     * implemented SingleTone.
+     *
+     * @return an instance of type Admin
+     */
     public static Admin getInstance() {
         return instance;
     }
 
+    private static Admin instance = new Admin();
+    private Scanner input = new Scanner(System.in);
+    private AdminControl adminControl = new AdminControl();
+    private TreeMap<String, Flight> flightTreeMap;
+    Flight flight = new Flight();
+
+    /**
+     * Primary values are set.
+     */
     private Admin() {
         adminControl.setPrimaryData();
         flightTreeMap = adminControl.getFlightTreeMap();
     }
-
-    private Scanner input = new Scanner(System.in);
-    private AdminControl adminControl = new AdminControl();
-
-    private TreeMap<String, Flight> flightTreeMap;
-
-
-    Flight flight = new Flight();
 
     public void adminMenu() {
         int option = 1;
@@ -39,7 +43,6 @@ public class Admin {
             option = getOption(option);
             switch (option) {
                 case 1 -> add();
-
                 case 2 -> update();
                 case 3 -> remove();
                 case 4 -> flightSchedule();
@@ -55,6 +58,9 @@ public class Admin {
         return option;
     }
 
+    /**
+     * This method enables admin to add a new flight to the chart.
+     */
     private void add() {
         Flight flight = new Flight();
 
@@ -82,7 +88,9 @@ public class Admin {
         adminControl.binding(flight.getFlightID(), flight);
     }
 
-
+    /**
+     * This method enables admin to update a feature each time.
+     */
     private void update() {
         System.out.print("The Flight ID you wanna update: ");
         String ID = input.next();
@@ -103,6 +111,12 @@ public class Admin {
 
     }
 
+    /**
+     * It's an internal function here to help update method.
+     *
+     * @param ID     is the ID of the flight, admin want to update.
+     * @param choice is the feature they want to update.
+     */
     private void updatingFeatures(String ID, int choice) {
         switch (choice) {
             case 1 -> {
@@ -138,12 +152,18 @@ public class Admin {
         }
     }
 
+    /**
+     * It enables admin to remove a flight of the chart.
+     */
     private void remove() {
         System.out.print("The Flight ID(Enter the code which is a number):");
         String ID = input.next();
         flightTreeMap.remove(ID);
     }
 
+    /**
+     * It prints the whole chart.
+     */
     private void flightSchedule() {
         flightTreeMap = adminControl.getFlightTreeMap();
         adminControl.printFlightsChart(flightTreeMap);

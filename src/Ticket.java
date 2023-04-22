@@ -16,10 +16,17 @@ public class Ticket {
     }
 
     private static int i;
+
     private void setTicketID() {
         ticketID = passenger.getUsername() + i++ + flightID;
     }
 
+    /**
+     * It sets the ticket for the customer and generates a specialized ticketID.
+     *
+     * @param passenger
+     * @param flightID
+     */
     public void setTicketIDs(Passenger passenger, String flightID) {
         this.passenger = passenger;
         this.flightID = flightID;
@@ -31,6 +38,13 @@ public class Ticket {
         userTickets.put(ticketID, flightTreeMap.get(flightID));
     }
 
+    /**
+     * Is an internal method to check whether the user's chosen flight exists or not.
+     *
+     * @param flightID
+     * @param flightTreeMap
+     * @return -> returns true if the flight is reservable.
+     */
     public boolean checkOption(String flightID, TreeMap<String, Flight> flightTreeMap) {
         setFlightTreeMap(flightTreeMap);
         int check = 0;

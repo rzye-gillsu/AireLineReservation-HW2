@@ -124,6 +124,9 @@ public class Passengers {
 
     }
 
+    /**
+     * It's an internal method that get the desired inputs to search the flights.
+     */
     private void gettingInputs() {
         ArrayList<String> flights = turnToString();
 
@@ -165,6 +168,12 @@ public class Passengers {
 
     }
 
+    /**
+     * By this internal method user can submit their desired feature of the selected filter to search.
+     *
+     * @param option  the filter
+     * @param flights flights turned into strings
+     */
     private void filters(int option, ArrayList<String> flights) {
         String word = null;
         int max = 0, min = 0;
@@ -199,6 +208,13 @@ public class Passengers {
         search(word, flights);
     }
 
+    /**
+     * It's the main internal method that do the searching.
+     * It uses regex to match user's input with flights strings.
+     *
+     * @param word    user's input
+     * @param flights flights turned into strings
+     */
     private void search(String word, ArrayList<String> flights) {
         String regex = "\\b" + word + "\\b";
 
@@ -213,6 +229,11 @@ public class Passengers {
         }
     }
 
+    /**
+     * It turns all the flights to seperated strings and get stored in an ArrayList<String> flights.
+     *
+     * @return flights turned to strings
+     */
     private ArrayList<String> turnToString() {
         ArrayList<String> flights = new ArrayList<>();
         for (var key : flightTreeMap.keySet()) {
