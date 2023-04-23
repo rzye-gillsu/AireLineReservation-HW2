@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class Admin {
+public class Admin extends Subject{
     /**
      * implemented SingleTone.
      *
@@ -108,6 +108,7 @@ public class Admin {
         int choice = input.nextInt();
 
         updatingFeatures(ID, choice);
+        notifyObserver(ID);
 
     }
 
@@ -159,6 +160,7 @@ public class Admin {
         System.out.print("The Flight ID(Enter the code which is a number):");
         String ID = input.next();
         flightTreeMap.remove(ID);
+        notifyObserver(ID);
     }
 
     /**
