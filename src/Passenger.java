@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,18 +40,19 @@ public class Passenger implements Observer {
         this.password = password;
     }
 
-
+    public HashMap<Passenger, String> updatingUser = new HashMap<>();
     @Override
     public void update(String ID) {
-        if (Signing.userMenuHappened())
-            System.out.printf("""
-                    Flight's control has changed or removed the flightID %s which was reserved by you.
-                    To check for new updates search %s
-                    """, ID, ID);
+//        System.out.printf("""
+//                Flight's control has changed or removed the flightID %s which was reserved by you.
+//                To check for new updates search %s
+//                """, ID, ID);
         Pattern pattern = Pattern.compile(ID, Pattern.CASE_INSENSITIVE);
         for (var ticketID : this.getTicket().getUserTickets().keySet()) {
             Matcher matcher = pattern.matcher(ticketID);
             if (matcher.find()) {
+                updatingUser.put(this, String.format("Flight's control has changed or removed the flightID %s which was reserved by you.\n" +
+                        "To check for new updates search %s", ID, ID));
                 (new TicketControl()).cancelingTicket(this, ticketID);
             }
         }

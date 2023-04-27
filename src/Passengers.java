@@ -30,6 +30,10 @@ public class Passengers {
 
     public void userMenu(TreeMap<String, Flight> flightTreeMap) {
         this.flightTreeMap = flightTreeMap;
+        if (passenger.updatingUser.get(passenger) != null) {
+            System.out.println(passenger.updatingUser.get(passenger));
+//            passenger.updatingUser.get(passenger) = null; // WHY???
+        }
         System.out.println("""
                 ::::::::::::::::::::::::::::::::::::::::
                          PASSENGER MENU OPTIONS
@@ -152,7 +156,7 @@ public class Passengers {
         } else {
             System.out.println("\nThe searched Flight(s):");
             System.out.printf("|%-7s\t|%-10s\t|%-12s\t|%-9s\t|%-6s\t|%-8s\t|%-4s\n",
-                    "TicketID", "Origin", "Destination", "Date", "Time", "Price", "Seats");
+                    "FlightID", "Origin", "Destination", "Date", "Time", "Price", "Seats");
             for (String flight : flights) {
                 String[] flightID = flight.split(" ");
                 printSearchedFlights(flightID[0]);
