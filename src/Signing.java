@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Signing {
     private Admin admin;
@@ -56,6 +58,8 @@ public class Signing {
                 if (userFound(p1)) {
                     p.setPassenger(p1);
                     System.out.printf("\n\nWelcome dear %s!\n\n", username);
+                    value = true;
+                    userMenuHappened();
                     p.userMenu(admin.getFlightTreeMap());
                     check = 1;
                 }
@@ -64,6 +68,10 @@ public class Signing {
         if (check == 0)
             System.out.println("\n!!!User with given username and password is not found.");
         signingMenu();
+    }
+    private static boolean value = false;
+    public static boolean userMenuHappened() {
+        return value;
     }
 
     /**
@@ -126,6 +134,7 @@ public class Signing {
         passenger.setPassword(password);
         passenger.setTicket(new Ticket());
         passengers.add(passenger);
+        admin.addObserver(passenger);
 
         p.setPassengers(passengers);
     }
@@ -145,5 +154,4 @@ public class Signing {
     private boolean isAdmin() {
         return username.equals("Admin") && password.equals("Admin");
     }
-
 }

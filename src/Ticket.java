@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class Ticket {
@@ -5,6 +6,14 @@ public class Ticket {
     private String flightID;
     private TreeMap<String, Flight> flightTreeMap;
     private TreeMap<String, Flight> userTickets = new TreeMap<>();
+    private static ArrayList<String> flightIDs = new ArrayList<>();
+    public static boolean flightIdFound(String ID) {
+        for (var id : flightIDs) {
+            if (ID.equals(id))
+                return true;
+        }
+        return false;
+    }
     private String ticketID;
 
     public TreeMap<String, Flight> getUserTickets() {
@@ -30,6 +39,7 @@ public class Ticket {
     public void setTicketIDs(Passenger passenger, String flightID) {
         this.passenger = passenger;
         this.flightID = flightID;
+        flightIDs.add(flightID);
         setTicketID();
         setUserTickets();
     }

@@ -4,7 +4,12 @@
     <list default="true" id="1394ede7-a40b-4d3f-9256-04dbc4c0776f" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/Serialized.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Passenger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Passengers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Passengers.java" afterDir="false" />
+>>>>>>> ObservingFlights
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +98,10 @@
       <workItem from="1682175515601" duration="15527000" />
       <workItem from="1682252657489" duration="4469000" />
       <workItem from="1682359349684" duration="2477000" />
+<<<<<<< HEAD
       <workItem from="1682613027379" duration="5116000" />
+=======
+>>>>>>> ObservingFlights
     </task>
     <servers />
   </component>
