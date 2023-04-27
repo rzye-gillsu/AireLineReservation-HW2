@@ -16,13 +16,17 @@ public class Admin {
     private AdminControl adminControl = new AdminControl();
     private TreeMap<String, Flight> flightTreeMap;
     Flight flight = new Flight();
+    Serialized srz = new Serialized();
 
     /**
      * Primary values are set.
      */
     private Admin() {
-        adminControl.setPrimaryData();
-        flightTreeMap = adminControl.getFlightTreeMap();
+        flightTreeMap = srz.readFile();
+        if (flightTreeMap == null) {
+            adminControl.setPrimaryData();
+            flightTreeMap = adminControl.getFlightTreeMap();
+        }
     }
 
     public void adminMenu() {
