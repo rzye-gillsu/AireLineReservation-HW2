@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class Flight {
+public class Flight implements Serializable {
     private String flightID;
     private String origin;
     private String destination;

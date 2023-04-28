@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class Ticket {
+public class Ticket implements Serializable {
     private Passenger passenger;
     private String flightID;
     private TreeMap<String, Flight> flightTreeMap;

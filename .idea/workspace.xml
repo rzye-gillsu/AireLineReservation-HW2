@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1394ede7-a40b-4d3f-9256-04dbc4c0776f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Serialized.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/flights.ser" beforeDir="false" afterPath="$PROJECT_DIR$/flights.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
-=======
+      <change beforePath="$PROJECT_DIR$/src/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Flight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Observer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Passenger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Passengers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Passengers.java" afterDir="false" />
->>>>>>> ObservingFlights
+      <change beforePath="$PROJECT_DIR$/src/Serialized.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Signing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Signing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Subject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ticket.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +45,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
@@ -98,10 +104,10 @@
       <workItem from="1682175515601" duration="15527000" />
       <workItem from="1682252657489" duration="4469000" />
       <workItem from="1682359349684" duration="2477000" />
-<<<<<<< HEAD
-      <workItem from="1682613027379" duration="5116000" />
-=======
->>>>>>> ObservingFlights
+      <workItem from="1682669350286" duration="5679000" />
+      <workItem from="1682675093172" duration="155000" />
+      <workItem from="1682680345978" duration="1628000" />
+      <workItem from="1682683620508" duration="1196000" />
     </task>
     <servers />
   </component>

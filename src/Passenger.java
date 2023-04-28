@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Passenger implements Observer {
+public class Passenger implements Observer, Serializable {
     private String username;
     private String password;
     private int charge;
@@ -41,12 +42,9 @@ public class Passenger implements Observer {
     }
 
     public HashMap<Passenger, String> updatingUser = new HashMap<>();
+
     @Override
     public void update(String ID) {
-//        System.out.printf("""
-//                Flight's control has changed or removed the flightID %s which was reserved by you.
-//                To check for new updates search %s
-//                """, ID, ID);
         Pattern pattern = Pattern.compile(ID, Pattern.CASE_INSENSITIVE);
         for (var ticketID : this.getTicket().getUserTickets().keySet()) {
             Matcher matcher = pattern.matcher(ticketID);

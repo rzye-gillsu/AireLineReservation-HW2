@@ -1,7 +1,9 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.TreeMap;
+import SerializingTools.*;
 
-public class Admin extends Subject{
+public class Admin extends Subject {
     /**
      * implemented SingleTone.
      *
@@ -12,20 +14,27 @@ public class Admin extends Subject{
     }
 
     private static Admin instance = new Admin();
+
     private Scanner input = new Scanner(System.in);
     private AdminControl adminControl = new AdminControl();
     private TreeMap<String, Flight> flightTreeMap;
     Flight flight = new Flight();
-    Serialized srz = new Serialized();
 
     /**
      * Primary values are set.
      */
     private Admin() {
-        flightTreeMap = srz.readFile();
-        if (flightTreeMap == null) {
-            adminControl.setPrimaryData();
-            flightTreeMap = adminControl.getFlightTreeMap();
+        Serialized.getInstance();
+        DeSerialized dsz = DeSerialized.getInstance();
+        try {
+            if (dsz.isEmpty()) {
+                adminControl.setPrimaryData();
+                flightTreeMap = adminControl.getFlightTreeMap();
+            } else {
+                flightTreeMap = dsz.readFile(flightTreeMap);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import SerializingTools.Serialized;
 
 public class Signing {
     private Admin admin;
@@ -27,6 +26,7 @@ public class Signing {
                  Your option:\040""");
         int option = input.nextInt();
         if (option == 3) {
+            (Serialized.getInstance()).writeFile(admin.getFlightTreeMap(), p.getPassengers());
             System.out.println("\nSee you soon!");
             System.exit(0);
         }
@@ -69,7 +69,9 @@ public class Signing {
             System.out.println("\n!!!User with given username and password is not found.");
         signingMenu();
     }
+
     private static boolean value = false;
+
     public static boolean userMenuHappened() {
         return value;
     }
@@ -100,6 +102,7 @@ public class Signing {
 
     /**
      * checks if username has not been used and before and the password is in the correct syntax.
+     *
      * @param passengers
      * @return -> returns true if the username and password is ready to use by the user.
      */
@@ -125,6 +128,7 @@ public class Signing {
 
     /**
      * Sets username and password and generates an instance of Ticket class.";
+     *
      * @param passengers
      */
     private void addUser(ArrayList<Passenger> passengers) {
@@ -149,6 +153,7 @@ public class Signing {
 
     /**
      * Checks if admin can login or not.
+     *
      * @return
      */
     private boolean isAdmin() {

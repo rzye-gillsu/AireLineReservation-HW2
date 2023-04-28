@@ -30,9 +30,9 @@ public class Passengers {
 
     public void userMenu(TreeMap<String, Flight> flightTreeMap) {
         this.flightTreeMap = flightTreeMap;
-        if (passenger.updatingUser.get(passenger) != null) {
+        if (passenger.updatingUser.containsKey(passenger)) {
             System.out.println(passenger.updatingUser.get(passenger));
-//            passenger.updatingUser.get(passenger) = null; // WHY???
+            passenger.updatingUser.clear();
         }
         System.out.println("""
                 ::::::::::::::::::::::::::::::::::::::::
