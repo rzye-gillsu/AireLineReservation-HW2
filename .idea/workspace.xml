@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1394ede7-a40b-4d3f-9256-04dbc4c0776f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flights.ser" beforeDir="false" afterPath="$PROJECT_DIR$/flights.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flights.ser" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Flight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Observer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Passenger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Passengers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Passengers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Serialized.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SerializingTools/DeSerialized.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SerializingTools/DeSerialized.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SerializingTools/Serialized.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SerializingTools/Serialized.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Signing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Signing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Subject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ticket.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +102,7 @@
       <workItem from="1682675093172" duration="155000" />
       <workItem from="1682680345978" duration="1628000" />
       <workItem from="1682683620508" duration="1196000" />
+      <workItem from="1682684841504" duration="2605000" />
     </task>
     <servers />
   </component>

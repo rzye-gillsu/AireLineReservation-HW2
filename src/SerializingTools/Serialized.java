@@ -8,15 +8,17 @@ import java.util.TreeMap;
 
 public class Serialized {
     private static Serialized instance = new Serialized();
+
     public static Serialized getInstance() {
         return instance;
     }
+
     private FileOutputStream fileOutputStream;
     private ObjectOutputStream oos;
 
     private Serialized() {
         try {
-            fileOutputStream = new FileOutputStream("flights.ser");
+            fileOutputStream = new FileOutputStream("data.ser", true);
             oos = new ObjectOutputStream(fileOutputStream);
         } catch (IOException ioe) {
             ioe.printStackTrace();

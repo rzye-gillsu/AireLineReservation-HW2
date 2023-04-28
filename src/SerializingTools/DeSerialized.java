@@ -1,8 +1,10 @@
 package SerializingTools;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class DeSerialized {
@@ -14,16 +16,17 @@ public class DeSerialized {
     private ObjectInputStream ois;
     private DeSerialized() {
         try {
-            fileInputStream = new FileInputStream("flights.ser");
+            fileInputStream = new FileInputStream("data.ser");
             ois = new ObjectInputStream(fileInputStream);
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
     }
 
-    public TreeMap readFile(Object flightTreeMap) {
+    public void readFile(TreeMap flightTreeMap, ArrayList passengers) {
         try {
             flightTreeMap = (TreeMap) ois.readObject();
+            passengers = (ArrayList) ois.readObject();
             ois.close();
             fileInputStream.close();
         } catch (IOException ioe) {
@@ -32,7 +35,6 @@ public class DeSerialized {
             System.out.println("Class not found");
             c.printStackTrace();
         }
-        return (TreeMap) flightTreeMap;
     }
 
     public boolean isEmpty() throws IOException {

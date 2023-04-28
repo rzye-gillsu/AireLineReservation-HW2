@@ -19,23 +19,27 @@ public class Admin extends Subject {
     private AdminControl adminControl = new AdminControl();
     private TreeMap<String, Flight> flightTreeMap;
     Flight flight = new Flight();
+    public void primaryActions() {
+        adminControl.setPrimaryData();
+        flightTreeMap = adminControl.getFlightTreeMap();
+    }
 
     /**
      * Primary values are set.
      */
     private Admin() {
-        Serialized.getInstance();
-        DeSerialized dsz = DeSerialized.getInstance();
-        try {
-            if (dsz.isEmpty()) {
-                adminControl.setPrimaryData();
-                flightTreeMap = adminControl.getFlightTreeMap();
-            } else {
-                flightTreeMap = dsz.readFile(flightTreeMap);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        Serialized.getInstance();
+//        DeSerialized dsz = DeSerialized.getInstance();
+//        try {
+//            if (dsz.isEmpty()) {
+//                adminControl.setPrimaryData();
+//                flightTreeMap = adminControl.getFlightTreeMap();
+//            } else {
+//                flightTreeMap = dsz.readFile(flightTreeMap);
+//            }
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     public void adminMenu() {

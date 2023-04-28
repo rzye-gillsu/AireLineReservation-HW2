@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import SerializingTools.Serialized;
+import SerializingTools.*;
 
 public class Signing {
     private Admin admin;
@@ -11,6 +11,11 @@ public class Signing {
 
     public Signing() {
         admin = Admin.getInstance();
+        Serialized.getInstance();
+        if ("data.ser".isEmpty()) {
+            admin.primaryActions();
+        }
+        (DeSerialized.getInstance()).readFile(admin.getFlightTreeMap(), p.getPassengers());
     }
 
     public void signingMenu() {
