@@ -51,12 +51,12 @@ public class Flight {
         this.destination = destination;
     }
 
-    public void setDate(int year, int month, int day) {
-        date = year + "-" + month + "-" + day;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void setTime(int hour, int minute) {
-        time = hour + ":" + minute;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public void setPrice(int price) {
@@ -69,6 +69,7 @@ public class Flight {
 
     /**
      * It sets the primary data of flight chart.
+     *
      * @param flights It gets newed in the AdminControl Class.
      * @return It returns chart to the chart to the AdminControl Class.
      */
@@ -103,44 +104,43 @@ public class Flight {
 
         int increment = 0, decrement = 9;
 
-        primaryFeatures(flights[increment], cities[increment], cities[decrement--], 3, 30, 8, 0, prices[increment]);
+        primaryFeatures(flights[increment], cities[increment], cities[decrement--], "2023-1-3", "08:30", prices[increment]);
         flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
-        primaryFeatures(flights[increment], cities[increment], cities[decrement--], 3, 30, 8, 10, prices[increment]);
+        primaryFeatures(flights[increment], cities[increment], cities[decrement--], "2023-1-3", "08:10", prices[increment]);
         flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
-        primaryFeatures(flights[increment], cities[increment], cities[decrement--], 3, 30, 8, 20, prices[increment]);
+        primaryFeatures(flights[increment], cities[increment], cities[decrement--], "2023-1-3", "08:20", prices[increment]);
         flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
-        primaryFeatures(flights[increment], cities[increment], cities[decrement--], 3, 30, 8, 30, prices[increment]);
+        primaryFeatures(flights[increment], cities[increment], cities[decrement--], "2023-1-3", "08:30", prices[increment]);
         flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
-        primaryFeatures(flights[increment], cities[increment], cities[decrement--], 3, 30, 8, 40, prices[increment]);
+        primaryFeatures(flights[increment], cities[increment], cities[decrement--], "2023-1-3", "08:40", prices[increment]);
         flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
-        primaryFeatures(flights[increment], cities[increment], cities[decrement--], 3, 30, 8, 50, prices[increment]);
+        primaryFeatures(flights[increment], cities[increment], cities[decrement--], "2023-1-3", "08:50", prices[increment]);
         flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
-        primaryFeatures(flights[increment], cities[increment], cities[decrement--], 4, 1, 10, 10, prices[increment]);
+        primaryFeatures(flights[increment], cities[increment], cities[decrement--], "2023-1-4", "10:10", prices[increment]);
         flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
-        primaryFeatures(flights[increment], cities[increment], cities[decrement--], 4, 1, 10, 20, prices[increment]);
+        primaryFeatures(flights[increment], cities[increment], cities[decrement--], "2023-1-4", "10:20", prices[increment]);
         flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
-        primaryFeatures(flights[increment], cities[increment], cities[decrement--], 4, 1, 10, 30, prices[increment]);
+        primaryFeatures(flights[increment], cities[increment], cities[decrement--], "2023-1-4", "10:30", prices[increment]);
         flightTreeMap.put(IDs.get(increment), flights[increment++]);
 
-        primaryFeatures(flights[increment], cities[increment], cities[decrement], 4, 1, 10, 40, prices[increment]);
+        primaryFeatures(flights[increment], cities[increment], cities[decrement], "2023-1-4", "10:40", prices[increment]);
         flightTreeMap.put(IDs.get(increment), flights[increment]);
 
     }
 
-    private void primaryFeatures(Flight flight, String origin, String destination, int month, int day,
-                                 int hour, int minute, int price) {
+    private void primaryFeatures(Flight flight, String origin, String destination, String date, String time, int price) {
         flight.setOrigin(origin);
         flight.setDestination(destination);
-        flight.setDate(2023, month, day);
-        flight.setTime(hour, minute);
+        flight.setDate(date);
+        flight.setTime(time);
         flight.setPrice(price);
         flight.setSeat(245);
     }

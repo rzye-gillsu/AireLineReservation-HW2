@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class Admin extends Subject{
+public class Admin extends Subject {
     /**
      * implemented SingleTone.
      *
@@ -26,8 +26,9 @@ public class Admin extends Subject{
     }
 
     public void adminMenu() {
-        int option = 1;
-        while (option != 0) {
+        String option;
+        int o = 1;
+        while (o != 0) {
             System.out.println("""
                     ::::::::::::::::::::::::::::::::::::::::
                                Admin MENU OPTIONS
@@ -39,23 +40,15 @@ public class Admin extends Subject{
                         <4> Flight schedules
                         <0> Sign out""");
             System.out.print("Your option(1-4): ");
-            option = input.nextInt();
-            option = getOption(option);
-            switch (option) {
+            option = input.next();
+            o = InputHandler.getInstance().checkAdminMenuInput(option);
+            switch (o) {
                 case 1 -> add();
                 case 2 -> update();
                 case 3 -> remove();
                 case 4 -> flightSchedule();
             }
         }
-    }
-
-    private int getOption(int option) {
-        while (option > 4 || option < 0) {
-            System.out.print("Wrong input! try another option  in range (1, 4): ");
-            option = input.nextInt();
-        }
-        return option;
     }
 
     /**
@@ -67,23 +60,49 @@ public class Admin extends Subject{
         System.out.print("Flight ID(Enter the code which is a number): ");
         flight.setFlightID(input.next());
 
-        System.out.print("Flight's Origin: ");
-        flight.setOrigin(input.next());
+        {
+            System.out.print("Flight's Origin: ");
+            flight.setOrigin(input.next());
+        }
 
-        System.out.print("Flight's Destination: ");
-        flight.setDestination(input.next());
+        {
+            System.out.print("Flight's Destination: ");
+            flight.setDestination(input.next());
+        }
 
-        System.out.print("Date of the Flight, Submit->\n\tThe Year, the month and the day seperated with space: ");
-        flight.setDate(input.nextInt(), input.nextInt(), input.nextInt());
+        {
+            System.out.print("Date of the Flight, Submit->\n\tThe Year, the month and the day as xxxx-xx-xx: ");
+            String date = input.next();
+            boolean dateIsValid = InputHandler.getInstance().checkDateFormat(date);
+            while (!dateIsValid) {
+                System.out.print("Try again: ");
+                dateIsValid = InputHandler.getInstance().checkDateFormat(input.next());
+            }
+            flight.setDate(date);
+        }
 
-        System.out.print("Time of the Flight, submit->\n\tThe hour and the minute seperated with space: ");
-        flight.setTime(input.nextInt(), input.nextInt());
+        {
+            System.out.print("Time of the Flight, submit->\n\tThe hour and the minute as xx:xx: ");
+            String time = input.next();
+            boolean timeIsValid = InputHandler.getInstance().checkTimeFormat(time);
+            while (!timeIsValid) {
+                System.out.print("Try again: ");
+                timeIsValid = InputHandler.getInstance().checkTimeFormat(input.next());
+            }
+            flight.setTime(time);
+        }
 
-        System.out.print("Price of the Flight: ");
-        flight.setPrice(input.nextInt());
+        {
+            System.out.print("Price of the flight: ");
+            String price = InputHandler.getInstance().checkIt(input);
+            flight.setPrice(Integer.parseInt(price));
+        }
 
-        System.out.print("Number of the Seats: ");
-        flight.setSeat(input.nextInt());
+        {
+            System.out.print("Number of the Seats: ");
+            String seat = InputHandler.getInstance().checkIt(input);
+            flight.setSeat(Integer.parseInt(seat));
+        }
 
         adminControl.binding(flight.getFlightID(), flight);
     }
@@ -135,20 +154,26 @@ public class Admin extends Subject{
                 flightTreeMap.get(ID).setDestination(input.next());
             }
             case 4 -> {
-                System.out.print("Date of the Flight, Submit->\n\tThe Year, the month and the day seperated with space: ");
-                flightTreeMap.get(ID).setDate(input.nextInt(), input.nextInt(), input.nextInt());
+                System.out.print("Date of the Flight, Submit->\n\tThe Year, the month and the day as xxxx-xx-xx: ");
+                String date = input.next();
+                if (InputHandler.getInstance().checkDateFormat(date))
+                    flightTreeMap.get(ID).setDate(date);
             }
             case 5 -> {
-                System.out.print("Time of the Flight, submit->\n\tThe hour and the minute seperated with space: ");
-                flightTreeMap.get(ID).setTime(input.nextInt(), input.nextInt());
+                System.out.print("Time of the Flight, submit->\n\tThe hour and the minute as xx:xx: ");
+                String time = input.next();
+                if (InputHandler.getInstance().checkTimeFormat(time))
+                    flightTreeMap.get(ID).setTime(time);
             }
             case 6 -> {
-                System.out.print("The Price of the Flight: ");
-                flightTreeMap.get(ID).setPrice(input.nextInt());
+                System.out.print("Price of the flight: ");
+                String price = InputHandler.getInstance().checkIt(input);
+                flightTreeMap.get(ID).setPrice(Integer.parseInt(price));
             }
             case 7 -> {
                 System.out.print("Number of the Seats: ");
-                flightTreeMap.get(ID).setSeat(input.nextInt());
+                String seat = InputHandler.getInstance().checkIt(input);
+                flightTreeMap.get(ID).setSeat(Integer.parseInt(seat));
             }
         }
     }

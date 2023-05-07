@@ -25,7 +25,7 @@ public class Signing {
                     <2> Sign up
                     <3> Exit
                  Your option:\040""");
-        int option = input.nextInt();
+        int option = InputHandler.getInstance().checkSigningMenuInput(input.next());
         if (option == 3) {
             System.out.println("\nSee you soon!");
             System.exit(0);

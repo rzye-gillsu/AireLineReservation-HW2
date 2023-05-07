@@ -7,6 +7,7 @@ public class Ticket {
     private TreeMap<String, Flight> flightTreeMap;
     private TreeMap<String, Flight> userTickets = new TreeMap<>();
     private static ArrayList<String> flightIDs = new ArrayList<>();
+
     public static boolean flightIdFound(String ID) {
         for (var id : flightIDs) {
             if (ID.equals(id))
@@ -14,6 +15,7 @@ public class Ticket {
         }
         return false;
     }
+
     private String ticketID;
 
     public TreeMap<String, Flight> getUserTickets() {
@@ -22,6 +24,10 @@ public class Ticket {
 
     private void setFlightTreeMap(TreeMap<String, Flight> flightTreeMap) {
         this.flightTreeMap = flightTreeMap;
+    }
+
+    public void setFlights(TreeMap<String, Flight> flightTreeMap) {
+        setFlightTreeMap(flightTreeMap);
     }
 
     private static int i;
@@ -51,15 +57,14 @@ public class Ticket {
     /**
      * Is an internal method to check whether the user's chosen flight exists or not.
      *
-     * @param flightID
-     * @param flightTreeMap
+     * @param ID
+     * @param treeMap
      * @return -> returns true if the flight is reservable.
      */
-    public boolean checkOption(String flightID, TreeMap<String, Flight> flightTreeMap) {
-        setFlightTreeMap(flightTreeMap);
+    public boolean checkOption(String ID, TreeMap<String, Flight> treeMap) {
         int check = 0;
-        for (var key : flightTreeMap.keySet())
-            if (flightID.equals(key)) {
+        for (var key : treeMap.keySet())
+            if (ID.equals(key)) {
                 check = 1;
                 break;
             }

@@ -9,8 +9,8 @@ public class Passengers {
     private Passenger passenger;
     private ArrayList<Passenger> passengers = new ArrayList<>();
     private TicketControl ticketControl = new TicketControl();
-    TreeMap<String, Flight> flightTreeMap;
-    TreeMap<String, Flight> userTickets;
+    private TreeMap<String, Flight> flightTreeMap;
+    private TreeMap<String, Flight> userTickets;
 
     private void setUserTickets() {
         this.userTickets = ticketControl.getUserTickets();
@@ -47,7 +47,7 @@ public class Passengers {
                     <6> Add charge
                     <0> Sign out
                 """);
-        int option = input.nextInt();
+        int option = InputHandler.getInstance().checkPassengerMenuInput(input.next());
         if (option == 0) {
             return;
         } else {
@@ -69,6 +69,7 @@ public class Passengers {
         System.out.print("Your chosen flight's flightID: ");
         String flightID = input.next();
 
+        passenger.getTicket().setFlights(flightTreeMap);
         if (passenger.getTicket().checkOption(flightID, flightTreeMap)) {
             ticketControl.setFlightTreeMap(flightTreeMap);
             if (ticketControl.manageTicket(passenger, flightID)) {
@@ -77,7 +78,7 @@ public class Passengers {
                 ticketControl.availableSeats();
             }
         } else {
-            System.out.println("\n!!!No flight with given flightID were found.");
+            System.out.println("\n!!!No flight with given flightID was found.");
         }
 
     }
@@ -85,8 +86,12 @@ public class Passengers {
     private void cancelingTicket() {
         System.out.print("Enter the ticketID you want to cancel: ");
         String ticketID = input.next();
-        ticketControl.cancelingTicket(passenger, ticketID);
-        System.out.printf("Ticket with ID: %s is successfully canceled.\n", ticketID);
+        if(passenger.getTicket().checkOption(ticketID, userTickets)) {
+            ticketControl.cancelingTicket(passenger, ticketID);
+            System.out.printf("Ticket with ID: %s is successfully canceled.\n", ticketID);
+        } else {
+            System.out.println("\n!!!No ticket with given ticketID was found.");
+        }
     }
 
     private void showBookedTickets() {
